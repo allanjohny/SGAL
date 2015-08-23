@@ -1,36 +1,88 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+using SGAL.Model.Logic.SGAL;
 
 namespace SGAL.Repositorio.Logic
 {
-    public abstract class BaseRepository<T> where T : class
+    public class BaseRepository<T> where T : class
     {
-        public interface IBaseRepository
-        {
-            void Incluir(T entity);
-            void Alterar(T entity);
-            void Excluir(T entity);
-            void Excluir(Expression<Func<T, bool>> where);
-            T Obter(long id);
-            T Obter(string id);
-            T ObterPrimeiro(Expression<Func<T, bool>> where);
-            IQueryable<T> ObterTodos();
-            IQueryable<T> ObterVarios(Expression<Func<T, bool>> where);
-            void Salvar();
-        }
-
-        private SGEEntities Conexao;
+        private SGALEntities Conexao;
         private readonly IDbSet<T> Contexto;
 
-        protected BaseRepository()
+        public BaseRepository()
         {
-            if (Conexao != null)
-                Conexao = new SGEEntities();
+            if (Conexao == null)
+                Conexao = new SGALEntities();
             Contexto = Conexao.Set<T>();
+        }
+
+        public interface IBaseRepository
+        {
+            /// <summary>
+            /// Método padrão para Incluir
+            /// </summary>
+            /// <param name="entity"></param>
+            void Incluir(T entity);
+
+            /// <summary>
+            /// Método padrão para Alterar
+            /// </summary>
+            /// <param name="entity"></param>
+            void Alterar(T entity);
+
+            /// <summary>
+            /// Método padrão para Excluir
+            /// </summary>
+            /// <param name="entity"></param>
+            void Excluir(T entity);
+
+            /// <summary>
+            /// Método padrão para Excluir utilizando expressão Linq
+            /// </summary>
+            /// <param name="where"></param>
+            void Excluir(Expression<Func<T, bool>> where);
+
+            /// <summary>
+            /// Método padrão para Obter por PK do tipo long
+            /// </summary>
+            /// <param name="id"></param>
+            /// <returns></returns>
+            T Obter(long id);
+
+            /// <summary>
+            /// Método padrão para Obter por PK do tipo string
+            /// </summary>
+            /// <param name="id"></param>
+            /// <returns></returns>
+            T Obter(string id);
+
+            /// <summary>
+            /// Método padrão para Obter o primeiro registro que atende a expressão Linq
+            /// </summary>
+            /// <param name="where"></param>
+            /// <returns></returns>
+            T ObterPrimeiro(Expression<Func<T, bool>> where);
+
+            /// <summary>
+            /// Método padrão para obter todos os registros
+            /// </summary>
+            /// <returns></returns>
+            IQueryable<T> ObterTodos();
+
+            /// <summary>
+            /// Método padrão para Obter os registros que atendem a expressão Linq
+            /// </summary>
+            /// <param name="where"></param>
+            /// <returns></returns>
+            IQueryable<T> ObterVarios(Expression<Func<T, bool>> where);
+
+            /// <summary>
+            /// Método padrão para dar Commit
+            /// </summary>
+            void Salvar();
         }
 
         public virtual void Incluir(T entity)
@@ -56,6 +108,12 @@ namespace SGAL.Repositorio.Logic
         {
             return Contexto.Find(id);
         }
+
+        public virtual T Obter(int id)
+        {
+            return Contexto.Find(id);
+        }
+
         public virtual T Obter(string id)
         {
             return Contexto.Find(id);

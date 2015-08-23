@@ -39,8 +39,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Logic\BaseService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SGAL.Dominio\SGAL.Core.csproj">
+      <Project>{8590d6fe-a3a6-48e0-9f4a-451635859323}</Project>
+      <Name>SGAL.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SGAL.Repositorio\SGAL.Repositorio.csproj">
+      <Project>{117b3fb1-f3d6-4a39-96d8-2c38ff3ed51c}</Project>
+      <Name>SGAL.Repositorio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Logic\SGAL\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

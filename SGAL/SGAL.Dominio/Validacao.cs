@@ -1,10 +1,8 @@
-﻿namespace SGAL.Dominio
+﻿namespace SGAL.Core
 {
     public class Validacao
     {
-        public Validacao()
-        {
-        }
+        public Validacao() { }
 
         /// <summary>
         /// Validações de campo
@@ -30,7 +28,7 @@
         /// ID do campo para colocar na ModelState
         /// </summary>
         public string Campo { get; set; }
-
+        
         /// <summary>
         /// Mensagem de validação
         /// </summary>

@@ -1,0 +1,1289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SGALModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="adepto">
+          <Key>
+            <PropertyRef Name="adeptoid" />
+          </Key>
+          <Property Name="adeptoid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="200" />
+          <Property Name="datanascimento" Type="datetime" />
+          <Property Name="email" Type="varchar" MaxLength="150" />
+          <Property Name="telefoneresidencial" Type="varchar" MaxLength="11" />
+          <Property Name="telefonecomercial" Type="varchar" MaxLength="11" />
+          <Property Name="telefonecelular" Type="varchar" MaxLength="11" />
+          <Property Name="datainclusao" Type="datetime" />
+          <Property Name="dataalteracao" Type="datetime" />
+          <Property Name="dataprimeiravez" Type="datetime" />
+        </EntityType>
+        <EntityType Name="adeptolivropresenca">
+          <Key>
+            <PropertyRef Name="adeptolivropresencaid" />
+          </Key>
+          <Property Name="adeptolivropresencaid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="livropresencaid" Type="int" />
+          <Property Name="adeptoid" Type="int" />
+          <Property Name="primeiravez" Type="bit" />
+          <Property Name="observacao" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="adeptomissaosagrada">
+          <Key>
+            <PropertyRef Name="adeptomissaosagradaid" />
+          </Key>
+          <Property Name="adeptomissaosagradaid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adeptoid" Type="int" />
+          <Property Name="missaosagradaid" Type="int" />
+          <Property Name="situacao" Type="char" MaxLength="1" />
+          <Property Name="valor" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="valortotal" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="datainicio" Type="datetime" />
+          <Property Name="dataalteracao" Type="datetime" />
+          <Property Name="datatermino" Type="datetime" />
+          <Property Name="adeptomissaosagradavinculoid" Type="int" />
+        </EntityType>
+        <EntityType Name="adeptomodulo">
+          <Key>
+            <PropertyRef Name="adeptomoduloid" />
+          </Key>
+          <Property Name="adeptomoduloid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adeptoid" Type="int" />
+          <Property Name="moduloid" Type="int" />
+          <Property Name="datainicio" Type="datetime" />
+          <Property Name="datatermino" Type="datetime" />
+          <Property Name="aprovado" Type="bit" />
+        </EntityType>
+        <EntityType Name="adeptorevistasagrada">
+          <Key>
+            <PropertyRef Name="adeptorevistasagradaid" />
+          </Key>
+          <Property Name="adeptorevistasagradaid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adeptoid" Type="int" />
+          <Property Name="associacaoid" Type="int" />
+          <Property Name="revistasagradaid" Type="int" />
+          <Property Name="quantidade" Type="int" />
+          <Property Name="valorcota" Type="decimal" Precision="13" Scale="2" />
+        </EntityType>
+        <EntityType Name="associacao">
+          <Key>
+            <PropertyRef Name="associacaoid" />
+          </Key>
+          <Property Name="associacaoid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="regionalid" Type="int" />
+          <Property Name="federacaoid" Type="int" />
+          <Property Name="descricao" Type="varchar" MaxLength="200" />
+          <Property Name="datainclusao" Type="datetime" />
+          <Property Name="dataalteracao" Type="datetime" />
+          <Property Name="dataabertura" Type="datetime" />
+          <Property Name="datafechamento" Type="datetime" />
+        </EntityType>
+        <EntityType Name="associado">
+          <Key>
+            <PropertyRef Name="associadoid" />
+          </Key>
+          <Property Name="associadoid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="associadotipoid" Type="int" />
+          <Property Name="adeptoid" Type="int" />
+          <Property Name="associacaoid" Type="int" />
+          <Property Name="dataassociacao" Type="datetime" />
+          <Property Name="dataalteracao" Type="datetime" />
+          <Property Name="observacao" Type="varchar(max)" />
+          <Property Name="situacao" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="associadotipo">
+          <Key>
+            <PropertyRef Name="associadotipoid" />
+          </Key>
+          <Property Name="associadotipoid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="100" />
+          <Property Name="situacao" Type="char" MaxLength="1" />
+          <Property Name="datainclusao" Type="datetime" />
+          <Property Name="dataalteracao" Type="datetime" />
+        </EntityType>
+        <EntityType Name="atividade">
+          <Key>
+            <PropertyRef Name="atividadeid" />
+          </Key>
+          <Property Name="atividadeid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="150" />
+          <Property Name="situacao" Type="char" MaxLength="1" />
+          <Property Name="datainclusao" Type="datetime" />
+          <Property Name="dataalteracao" Type="datetime" />
+        </EntityType>
+        <EntityType Name="federacao">
+          <Key>
+            <PropertyRef Name="federacaoid" />
+          </Key>
+          <Property Name="federacaoid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="200" />
+          <Property Name="datainclusao" Type="datetime" />
+          <Property Name="dataalteracao" Type="datetime" />
+        </EntityType>
+        <EntityType Name="livropresenca">
+          <Key>
+            <PropertyRef Name="livropresencaid" />
+          </Key>
+          <Property Name="livropresencaid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="associacaoid" Type="int" />
+          <Property Name="atividadeid" Type="int" />
+          <Property Name="orientadorid" Type="int" />
+          <Property Name="datahorareuniao" Type="datetime" />
+          <Property Name="temareuniao" Type="varchar" MaxLength="150" />
+          <Property Name="observacoes" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="missaosagrada">
+          <Key>
+            <PropertyRef Name="missaosagradaid" />
+          </Key>
+          <Property Name="missaosagradaid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="missaosagradatipoid" Type="int" />
+          <Property Name="descricao" Type="varchar" MaxLength="100" />
+          <Property Name="datainclusao" Type="datetime" />
+          <Property Name="dataalteracao" Type="datetime" />
+          <Property Name="situacao" Type="char" MaxLength="1" />
+          <Property Name="valor" Type="decimal" Precision="13" Scale="2" />
+        </EntityType>
+        <EntityType Name="missaosagradatipo">
+          <Key>
+            <PropertyRef Name="missaosagradatipoid" />
+          </Key>
+          <Property Name="missaosagradatipoid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="50" />
+          <Property Name="situacao" Type="char" MaxLength="1" />
+          <Property Name="datainclusao" Type="datetime" />
+          <Property Name="dataalteracao" Type="datetime" />
+        </EntityType>
+        <EntityType Name="modulo">
+          <Key>
+            <PropertyRef Name="moduloid" />
+          </Key>
+          <Property Name="moduloid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="100" />
+          <Property Name="datainclusao" Type="datetime" />
+          <Property Name="dataalteracao" Type="datetime" />
+        </EntityType>
+        <EntityType Name="regional">
+          <Key>
+            <PropertyRef Name="regionalid" />
+          </Key>
+          <Property Name="regionalid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="150" />
+          <Property Name="dataabertura" Type="datetime" />
+          <Property Name="datafechamento" Type="datetime" />
+          <Property Name="datainclusao" Type="datetime" />
+          <Property Name="dataalteracao" Type="datetime" />
+        </EntityType>
+        <EntityType Name="revistasagrada">
+          <Key>
+            <PropertyRef Name="revistasagradaid" />
+          </Key>
+          <Property Name="revistasagradaid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="100" />
+          <Property Name="datainclusao" Type="datetime" />
+          <Property Name="dataalteracao" Type="datetime" />
+          <Property Name="valor" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="valorcotistas" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="situacao" Type="char" MaxLength="1" />
+        </EntityType>
+        <Association Name="FK_adeptolivropresenca_adepto">
+          <End Role="adepto" Type="Self.adepto" Multiplicity="0..1" />
+          <End Role="adeptolivropresenca" Type="Self.adeptolivropresenca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adepto">
+              <PropertyRef Name="adeptoid" />
+            </Principal>
+            <Dependent Role="adeptolivropresenca">
+              <PropertyRef Name="adeptoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adeptolivropresenca_livropresenca">
+          <End Role="livropresenca" Type="Self.livropresenca" Multiplicity="0..1" />
+          <End Role="adeptolivropresenca" Type="Self.adeptolivropresenca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="livropresenca">
+              <PropertyRef Name="livropresencaid" />
+            </Principal>
+            <Dependent Role="adeptolivropresenca">
+              <PropertyRef Name="livropresencaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adeptomissaosagrada_adepto">
+          <End Role="adepto" Type="Self.adepto" Multiplicity="0..1" />
+          <End Role="adeptomissaosagrada" Type="Self.adeptomissaosagrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adepto">
+              <PropertyRef Name="adeptoid" />
+            </Principal>
+            <Dependent Role="adeptomissaosagrada">
+              <PropertyRef Name="adeptoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adeptomissaosagrada_adeptomissaosagrada">
+          <End Role="adeptomissaosagrada" Type="Self.adeptomissaosagrada" Multiplicity="0..1" />
+          <End Role="adeptomissaosagrada1" Type="Self.adeptomissaosagrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adeptomissaosagrada">
+              <PropertyRef Name="adeptomissaosagradaid" />
+            </Principal>
+            <Dependent Role="adeptomissaosagrada1">
+              <PropertyRef Name="adeptomissaosagradavinculoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adeptomissaosagrada_missaosagrada">
+          <End Role="missaosagrada" Type="Self.missaosagrada" Multiplicity="0..1" />
+          <End Role="adeptomissaosagrada" Type="Self.adeptomissaosagrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="missaosagrada">
+              <PropertyRef Name="missaosagradaid" />
+            </Principal>
+            <Dependent Role="adeptomissaosagrada">
+              <PropertyRef Name="missaosagradaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adeptomodulo_adepto">
+          <End Role="adepto" Type="Self.adepto" Multiplicity="0..1" />
+          <End Role="adeptomodulo" Type="Self.adeptomodulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adepto">
+              <PropertyRef Name="adeptoid" />
+            </Principal>
+            <Dependent Role="adeptomodulo">
+              <PropertyRef Name="adeptoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adeptomodulo_modulo">
+          <End Role="modulo" Type="Self.modulo" Multiplicity="0..1" />
+          <End Role="adeptomodulo" Type="Self.adeptomodulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="modulo">
+              <PropertyRef Name="moduloid" />
+            </Principal>
+            <Dependent Role="adeptomodulo">
+              <PropertyRef Name="moduloid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adeptorevistasagrada_adepto">
+          <End Role="adepto" Type="Self.adepto" Multiplicity="0..1" />
+          <End Role="adeptorevistasagrada" Type="Self.adeptorevistasagrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adepto">
+              <PropertyRef Name="adeptoid" />
+            </Principal>
+            <Dependent Role="adeptorevistasagrada">
+              <PropertyRef Name="adeptoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adeptorevistasagrada_associacao">
+          <End Role="associacao" Type="Self.associacao" Multiplicity="0..1" />
+          <End Role="adeptorevistasagrada" Type="Self.adeptorevistasagrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="associacao">
+              <PropertyRef Name="associacaoid" />
+            </Principal>
+            <Dependent Role="adeptorevistasagrada">
+              <PropertyRef Name="associacaoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adeptorevistasagrada_revistasagrada">
+          <End Role="revistasagrada" Type="Self.revistasagrada" Multiplicity="0..1" />
+          <End Role="adeptorevistasagrada" Type="Self.adeptorevistasagrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="revistasagrada">
+              <PropertyRef Name="revistasagradaid" />
+            </Principal>
+            <Dependent Role="adeptorevistasagrada">
+              <PropertyRef Name="revistasagradaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_associacao_federacao">
+          <End Role="federacao" Type="Self.federacao" Multiplicity="0..1" />
+          <End Role="associacao" Type="Self.associacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="federacao">
+              <PropertyRef Name="federacaoid" />
+            </Principal>
+            <Dependent Role="associacao">
+              <PropertyRef Name="federacaoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_associacao_regional">
+          <End Role="regional" Type="Self.regional" Multiplicity="0..1" />
+          <End Role="associacao" Type="Self.associacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="regional">
+              <PropertyRef Name="regionalid" />
+            </Principal>
+            <Dependent Role="associacao">
+              <PropertyRef Name="regionalid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_associado_adepto">
+          <End Role="adepto" Type="Self.adepto" Multiplicity="0..1" />
+          <End Role="associado" Type="Self.associado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adepto">
+              <PropertyRef Name="adeptoid" />
+            </Principal>
+            <Dependent Role="associado">
+              <PropertyRef Name="adeptoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_associado_associacao">
+          <End Role="associacao" Type="Self.associacao" Multiplicity="0..1" />
+          <End Role="associado" Type="Self.associado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="associacao">
+              <PropertyRef Name="associacaoid" />
+            </Principal>
+            <Dependent Role="associado">
+              <PropertyRef Name="associacaoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_associado_associadotipo">
+          <End Role="associadotipo" Type="Self.associadotipo" Multiplicity="0..1" />
+          <End Role="associado" Type="Self.associado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="associadotipo">
+              <PropertyRef Name="associadotipoid" />
+            </Principal>
+            <Dependent Role="associado">
+              <PropertyRef Name="associadotipoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_livropresenca_adepto">
+          <End Role="adepto" Type="Self.adepto" Multiplicity="0..1" />
+          <End Role="livropresenca" Type="Self.livropresenca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adepto">
+              <PropertyRef Name="adeptoid" />
+            </Principal>
+            <Dependent Role="livropresenca">
+              <PropertyRef Name="orientadorid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_livropresenca_associacao">
+          <End Role="associacao" Type="Self.associacao" Multiplicity="0..1" />
+          <End Role="livropresenca" Type="Self.livropresenca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="associacao">
+              <PropertyRef Name="associacaoid" />
+            </Principal>
+            <Dependent Role="livropresenca">
+              <PropertyRef Name="associacaoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_livropresenca_atividade">
+          <End Role="atividade" Type="Self.atividade" Multiplicity="0..1" />
+          <End Role="livropresenca" Type="Self.livropresenca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="atividade">
+              <PropertyRef Name="atividadeid" />
+            </Principal>
+            <Dependent Role="livropresenca">
+              <PropertyRef Name="atividadeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_missaosagrada_missaosagradatipo">
+          <End Role="missaosagradatipo" Type="Self.missaosagradatipo" Multiplicity="0..1" />
+          <End Role="missaosagrada" Type="Self.missaosagrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="missaosagradatipo">
+              <PropertyRef Name="missaosagradatipoid" />
+            </Principal>
+            <Dependent Role="missaosagrada">
+              <PropertyRef Name="missaosagradatipoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SGALModelStoreContainer">
+          <EntitySet Name="adepto" EntityType="Self.adepto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="adeptolivropresenca" EntityType="Self.adeptolivropresenca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="adeptomissaosagrada" EntityType="Self.adeptomissaosagrada" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="adeptomodulo" EntityType="Self.adeptomodulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="adeptorevistasagrada" EntityType="Self.adeptorevistasagrada" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="associacao" EntityType="Self.associacao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="associado" EntityType="Self.associado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="associadotipo" EntityType="Self.associadotipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="atividade" EntityType="Self.atividade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="federacao" EntityType="Self.federacao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="livropresenca" EntityType="Self.livropresenca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="missaosagrada" EntityType="Self.missaosagrada" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="missaosagradatipo" EntityType="Self.missaosagradatipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="modulo" EntityType="Self.modulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="regional" EntityType="Self.regional" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="revistasagrada" EntityType="Self.revistasagrada" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_adeptolivropresenca_adepto" Association="Self.FK_adeptolivropresenca_adepto">
+            <End Role="adepto" EntitySet="adepto" />
+            <End Role="adeptolivropresenca" EntitySet="adeptolivropresenca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adeptolivropresenca_livropresenca" Association="Self.FK_adeptolivropresenca_livropresenca">
+            <End Role="livropresenca" EntitySet="livropresenca" />
+            <End Role="adeptolivropresenca" EntitySet="adeptolivropresenca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adeptomissaosagrada_adepto" Association="Self.FK_adeptomissaosagrada_adepto">
+            <End Role="adepto" EntitySet="adepto" />
+            <End Role="adeptomissaosagrada" EntitySet="adeptomissaosagrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adeptomissaosagrada_adeptomissaosagrada" Association="Self.FK_adeptomissaosagrada_adeptomissaosagrada">
+            <End Role="adeptomissaosagrada" EntitySet="adeptomissaosagrada" />
+            <End Role="adeptomissaosagrada1" EntitySet="adeptomissaosagrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adeptomissaosagrada_missaosagrada" Association="Self.FK_adeptomissaosagrada_missaosagrada">
+            <End Role="missaosagrada" EntitySet="missaosagrada" />
+            <End Role="adeptomissaosagrada" EntitySet="adeptomissaosagrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adeptomodulo_adepto" Association="Self.FK_adeptomodulo_adepto">
+            <End Role="adepto" EntitySet="adepto" />
+            <End Role="adeptomodulo" EntitySet="adeptomodulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adeptomodulo_modulo" Association="Self.FK_adeptomodulo_modulo">
+            <End Role="modulo" EntitySet="modulo" />
+            <End Role="adeptomodulo" EntitySet="adeptomodulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adeptorevistasagrada_adepto" Association="Self.FK_adeptorevistasagrada_adepto">
+            <End Role="adepto" EntitySet="adepto" />
+            <End Role="adeptorevistasagrada" EntitySet="adeptorevistasagrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adeptorevistasagrada_associacao" Association="Self.FK_adeptorevistasagrada_associacao">
+            <End Role="associacao" EntitySet="associacao" />
+            <End Role="adeptorevistasagrada" EntitySet="adeptorevistasagrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adeptorevistasagrada_revistasagrada" Association="Self.FK_adeptorevistasagrada_revistasagrada">
+            <End Role="revistasagrada" EntitySet="revistasagrada" />
+            <End Role="adeptorevistasagrada" EntitySet="adeptorevistasagrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_associacao_federacao" Association="Self.FK_associacao_federacao">
+            <End Role="federacao" EntitySet="federacao" />
+            <End Role="associacao" EntitySet="associacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_associacao_regional" Association="Self.FK_associacao_regional">
+            <End Role="regional" EntitySet="regional" />
+            <End Role="associacao" EntitySet="associacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_associado_adepto" Association="Self.FK_associado_adepto">
+            <End Role="adepto" EntitySet="adepto" />
+            <End Role="associado" EntitySet="associado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_associado_associacao" Association="Self.FK_associado_associacao">
+            <End Role="associacao" EntitySet="associacao" />
+            <End Role="associado" EntitySet="associado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_associado_associadotipo" Association="Self.FK_associado_associadotipo">
+            <End Role="associadotipo" EntitySet="associadotipo" />
+            <End Role="associado" EntitySet="associado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_livropresenca_adepto" Association="Self.FK_livropresenca_adepto">
+            <End Role="adepto" EntitySet="adepto" />
+            <End Role="livropresenca" EntitySet="livropresenca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_livropresenca_associacao" Association="Self.FK_livropresenca_associacao">
+            <End Role="associacao" EntitySet="associacao" />
+            <End Role="livropresenca" EntitySet="livropresenca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_livropresenca_atividade" Association="Self.FK_livropresenca_atividade">
+            <End Role="atividade" EntitySet="atividade" />
+            <End Role="livropresenca" EntitySet="livropresenca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_missaosagrada_missaosagradatipo" Association="Self.FK_missaosagrada_missaosagradatipo">
+            <End Role="missaosagradatipo" EntitySet="missaosagradatipo" />
+            <End Role="missaosagrada" EntitySet="missaosagrada" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SGALModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="adepto">
+          <Key>
+            <PropertyRef Name="adeptoid" />
+          </Key>
+          <Property Name="adeptoid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="datanascimento" Type="DateTime" Precision="3" />
+          <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="telefoneresidencial" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="telefonecomercial" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="telefonecelular" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="datainclusao" Type="DateTime" Precision="3" />
+          <Property Name="dataalteracao" Type="DateTime" Precision="3" />
+          <Property Name="dataprimeiravez" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="adeptolivropresenca" Relationship="Self.FK_adeptolivropresenca_adepto" FromRole="adepto" ToRole="adeptolivropresenca" />
+          <NavigationProperty Name="adeptomissaosagrada" Relationship="Self.FK_adeptomissaosagrada_adepto" FromRole="adepto" ToRole="adeptomissaosagrada" />
+          <NavigationProperty Name="adeptomodulo" Relationship="Self.FK_adeptomodulo_adepto" FromRole="adepto" ToRole="adeptomodulo" />
+          <NavigationProperty Name="adeptorevistasagrada" Relationship="Self.FK_adeptorevistasagrada_adepto" FromRole="adepto" ToRole="adeptorevistasagrada" />
+          <NavigationProperty Name="associado" Relationship="Self.FK_associado_adepto" FromRole="adepto" ToRole="associado" />
+          <NavigationProperty Name="livropresenca" Relationship="Self.FK_livropresenca_adepto" FromRole="adepto" ToRole="livropresenca" />
+        </EntityType>
+        <EntityType Name="adeptolivropresenca">
+          <Key>
+            <PropertyRef Name="adeptolivropresencaid" />
+          </Key>
+          <Property Name="adeptolivropresencaid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="livropresencaid" Type="Int32" />
+          <Property Name="adeptoid" Type="Int32" />
+          <Property Name="primeiravez" Type="Boolean" />
+          <Property Name="observacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="adepto" Relationship="Self.FK_adeptolivropresenca_adepto" FromRole="adeptolivropresenca" ToRole="adepto" />
+          <NavigationProperty Name="livropresenca" Relationship="Self.FK_adeptolivropresenca_livropresenca" FromRole="adeptolivropresenca" ToRole="livropresenca" />
+        </EntityType>
+        <EntityType Name="adeptomissaosagrada">
+          <Key>
+            <PropertyRef Name="adeptomissaosagradaid" />
+          </Key>
+          <Property Name="adeptomissaosagradaid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adeptoid" Type="Int32" />
+          <Property Name="missaosagradaid" Type="Int32" />
+          <Property Name="situacao" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="valor" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="valortotal" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="datainicio" Type="DateTime" Precision="3" />
+          <Property Name="dataalteracao" Type="DateTime" Precision="3" />
+          <Property Name="datatermino" Type="DateTime" Precision="3" />
+          <Property Name="adeptomissaosagradavinculoid" Type="Int32" />
+          <NavigationProperty Name="adepto" Relationship="Self.FK_adeptomissaosagrada_adepto" FromRole="adeptomissaosagrada" ToRole="adepto" />
+          <NavigationProperty Name="adeptomissaosagrada1" Relationship="Self.FK_adeptomissaosagrada_adeptomissaosagrada" FromRole="adeptomissaosagrada" ToRole="adeptomissaosagrada1" />
+          <NavigationProperty Name="adeptomissaosagrada2" Relationship="Self.FK_adeptomissaosagrada_adeptomissaosagrada" FromRole="adeptomissaosagrada1" ToRole="adeptomissaosagrada" />
+          <NavigationProperty Name="missaosagrada" Relationship="Self.FK_adeptomissaosagrada_missaosagrada" FromRole="adeptomissaosagrada" ToRole="missaosagrada" />
+        </EntityType>
+        <EntityType Name="adeptomodulo">
+          <Key>
+            <PropertyRef Name="adeptomoduloid" />
+          </Key>
+          <Property Name="adeptomoduloid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adeptoid" Type="Int32" />
+          <Property Name="moduloid" Type="Int32" />
+          <Property Name="datainicio" Type="DateTime" Precision="3" />
+          <Property Name="datatermino" Type="DateTime" Precision="3" />
+          <Property Name="aprovado" Type="Boolean" />
+          <NavigationProperty Name="adepto" Relationship="Self.FK_adeptomodulo_adepto" FromRole="adeptomodulo" ToRole="adepto" />
+          <NavigationProperty Name="modulo" Relationship="Self.FK_adeptomodulo_modulo" FromRole="adeptomodulo" ToRole="modulo" />
+        </EntityType>
+        <EntityType Name="adeptorevistasagrada">
+          <Key>
+            <PropertyRef Name="adeptorevistasagradaid" />
+          </Key>
+          <Property Name="adeptorevistasagradaid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adeptoid" Type="Int32" />
+          <Property Name="associacaoid" Type="Int32" />
+          <Property Name="revistasagradaid" Type="Int32" />
+          <Property Name="quantidade" Type="Int32" />
+          <Property Name="valorcota" Type="Decimal" Precision="13" Scale="2" />
+          <NavigationProperty Name="adepto" Relationship="Self.FK_adeptorevistasagrada_adepto" FromRole="adeptorevistasagrada" ToRole="adepto" />
+          <NavigationProperty Name="associacao" Relationship="Self.FK_adeptorevistasagrada_associacao" FromRole="adeptorevistasagrada" ToRole="associacao" />
+          <NavigationProperty Name="revistasagrada" Relationship="Self.FK_adeptorevistasagrada_revistasagrada" FromRole="adeptorevistasagrada" ToRole="revistasagrada" />
+        </EntityType>
+        <EntityType Name="associacao">
+          <Key>
+            <PropertyRef Name="associacaoid" />
+          </Key>
+          <Property Name="associacaoid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="regionalid" Type="Int32" />
+          <Property Name="federacaoid" Type="Int32" />
+          <Property Name="descricao" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="datainclusao" Type="DateTime" Precision="3" />
+          <Property Name="dataalteracao" Type="DateTime" Precision="3" />
+          <Property Name="dataabertura" Type="DateTime" Precision="3" />
+          <Property Name="datafechamento" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="adeptorevistasagrada" Relationship="Self.FK_adeptorevistasagrada_associacao" FromRole="associacao" ToRole="adeptorevistasagrada" />
+          <NavigationProperty Name="federacao" Relationship="Self.FK_associacao_federacao" FromRole="associacao" ToRole="federacao" />
+          <NavigationProperty Name="regional" Relationship="Self.FK_associacao_regional" FromRole="associacao" ToRole="regional" />
+          <NavigationProperty Name="associado" Relationship="Self.FK_associado_associacao" FromRole="associacao" ToRole="associado" />
+          <NavigationProperty Name="livropresenca" Relationship="Self.FK_livropresenca_associacao" FromRole="associacao" ToRole="livropresenca" />
+        </EntityType>
+        <EntityType Name="associado">
+          <Key>
+            <PropertyRef Name="associadoid" />
+          </Key>
+          <Property Name="associadoid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="associadotipoid" Type="Int32" />
+          <Property Name="adeptoid" Type="Int32" />
+          <Property Name="associacaoid" Type="Int32" />
+          <Property Name="dataassociacao" Type="DateTime" Precision="3" />
+          <Property Name="dataalteracao" Type="DateTime" Precision="3" />
+          <Property Name="observacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="situacao" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="adepto" Relationship="Self.FK_associado_adepto" FromRole="associado" ToRole="adepto" />
+          <NavigationProperty Name="associacao" Relationship="Self.FK_associado_associacao" FromRole="associado" ToRole="associacao" />
+          <NavigationProperty Name="associadotipo" Relationship="Self.FK_associado_associadotipo" FromRole="associado" ToRole="associadotipo" />
+        </EntityType>
+        <EntityType Name="associadotipo">
+          <Key>
+            <PropertyRef Name="associadotipoid" />
+          </Key>
+          <Property Name="associadotipoid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="situacao" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="datainclusao" Type="DateTime" Precision="3" />
+          <Property Name="dataalteracao" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="associado" Relationship="Self.FK_associado_associadotipo" FromRole="associadotipo" ToRole="associado" />
+        </EntityType>
+        <EntityType Name="atividade">
+          <Key>
+            <PropertyRef Name="atividadeid" />
+          </Key>
+          <Property Name="atividadeid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="situacao" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="datainclusao" Type="DateTime" Precision="3" />
+          <Property Name="dataalteracao" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="livropresenca" Relationship="Self.FK_livropresenca_atividade" FromRole="atividade" ToRole="livropresenca" />
+        </EntityType>
+        <EntityType Name="federacao">
+          <Key>
+            <PropertyRef Name="federacaoid" />
+          </Key>
+          <Property Name="federacaoid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="datainclusao" Type="DateTime" Precision="3" />
+          <Property Name="dataalteracao" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="associacao" Relationship="Self.FK_associacao_federacao" FromRole="federacao" ToRole="associacao" />
+        </EntityType>
+        <EntityType Name="livropresenca">
+          <Key>
+            <PropertyRef Name="livropresencaid" />
+          </Key>
+          <Property Name="livropresencaid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="associacaoid" Type="Int32" />
+          <Property Name="atividadeid" Type="Int32" />
+          <Property Name="orientadorid" Type="Int32" />
+          <Property Name="datahorareuniao" Type="DateTime" Precision="3" />
+          <Property Name="temareuniao" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="observacoes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="adepto" Relationship="Self.FK_livropresenca_adepto" FromRole="livropresenca" ToRole="adepto" />
+          <NavigationProperty Name="adeptolivropresenca" Relationship="Self.FK_adeptolivropresenca_livropresenca" FromRole="livropresenca" ToRole="adeptolivropresenca" />
+          <NavigationProperty Name="associacao" Relationship="Self.FK_livropresenca_associacao" FromRole="livropresenca" ToRole="associacao" />
+          <NavigationProperty Name="atividade" Relationship="Self.FK_livropresenca_atividade" FromRole="livropresenca" ToRole="atividade" />
+        </EntityType>
+        <EntityType Name="missaosagrada">
+          <Key>
+            <PropertyRef Name="missaosagradaid" />
+          </Key>
+          <Property Name="missaosagradaid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="missaosagradatipoid" Type="Int32" />
+          <Property Name="descricao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="datainclusao" Type="DateTime" Precision="3" />
+          <Property Name="dataalteracao" Type="DateTime" Precision="3" />
+          <Property Name="situacao" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="valor" Type="Decimal" Precision="13" Scale="2" />
+          <NavigationProperty Name="adeptomissaosagrada" Relationship="Self.FK_adeptomissaosagrada_missaosagrada" FromRole="missaosagrada" ToRole="adeptomissaosagrada" />
+          <NavigationProperty Name="missaosagradatipo" Relationship="Self.FK_missaosagrada_missaosagradatipo" FromRole="missaosagrada" ToRole="missaosagradatipo" />
+        </EntityType>
+        <EntityType Name="missaosagradatipo">
+          <Key>
+            <PropertyRef Name="missaosagradatipoid" />
+          </Key>
+          <Property Name="missaosagradatipoid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="situacao" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="datainclusao" Type="DateTime" Precision="3" />
+          <Property Name="dataalteracao" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="missaosagrada" Relationship="Self.FK_missaosagrada_missaosagradatipo" FromRole="missaosagradatipo" ToRole="missaosagrada" />
+        </EntityType>
+        <EntityType Name="modulo">
+          <Key>
+            <PropertyRef Name="moduloid" />
+          </Key>
+          <Property Name="moduloid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="datainclusao" Type="DateTime" Precision="3" />
+          <Property Name="dataalteracao" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="adeptomodulo" Relationship="Self.FK_adeptomodulo_modulo" FromRole="modulo" ToRole="adeptomodulo" />
+        </EntityType>
+        <EntityType Name="regional">
+          <Key>
+            <PropertyRef Name="regionalid" />
+          </Key>
+          <Property Name="regionalid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="dataabertura" Type="DateTime" Precision="3" />
+          <Property Name="datafechamento" Type="DateTime" Precision="3" />
+          <Property Name="datainclusao" Type="DateTime" Precision="3" />
+          <Property Name="dataalteracao" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="associacao" Relationship="Self.FK_associacao_regional" FromRole="regional" ToRole="associacao" />
+        </EntityType>
+        <EntityType Name="revistasagrada">
+          <Key>
+            <PropertyRef Name="revistasagradaid" />
+          </Key>
+          <Property Name="revistasagradaid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="datainclusao" Type="DateTime" Precision="3" />
+          <Property Name="dataalteracao" Type="DateTime" Precision="3" />
+          <Property Name="valor" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="valorcotistas" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="situacao" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="adeptorevistasagrada" Relationship="Self.FK_adeptorevistasagrada_revistasagrada" FromRole="revistasagrada" ToRole="adeptorevistasagrada" />
+        </EntityType>
+        <Association Name="FK_adeptolivropresenca_adepto">
+          <End Role="adepto" Type="Self.adepto" Multiplicity="0..1" />
+          <End Role="adeptolivropresenca" Type="Self.adeptolivropresenca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adepto">
+              <PropertyRef Name="adeptoid" />
+            </Principal>
+            <Dependent Role="adeptolivropresenca">
+              <PropertyRef Name="adeptoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adeptomissaosagrada_adepto">
+          <End Role="adepto" Type="Self.adepto" Multiplicity="0..1" />
+          <End Role="adeptomissaosagrada" Type="Self.adeptomissaosagrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adepto">
+              <PropertyRef Name="adeptoid" />
+            </Principal>
+            <Dependent Role="adeptomissaosagrada">
+              <PropertyRef Name="adeptoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adeptomodulo_adepto">
+          <End Role="adepto" Type="Self.adepto" Multiplicity="0..1" />
+          <End Role="adeptomodulo" Type="Self.adeptomodulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adepto">
+              <PropertyRef Name="adeptoid" />
+            </Principal>
+            <Dependent Role="adeptomodulo">
+              <PropertyRef Name="adeptoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adeptorevistasagrada_adepto">
+          <End Role="adepto" Type="Self.adepto" Multiplicity="0..1" />
+          <End Role="adeptorevistasagrada" Type="Self.adeptorevistasagrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adepto">
+              <PropertyRef Name="adeptoid" />
+            </Principal>
+            <Dependent Role="adeptorevistasagrada">
+              <PropertyRef Name="adeptoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_associado_adepto">
+          <End Role="adepto" Type="Self.adepto" Multiplicity="0..1" />
+          <End Role="associado" Type="Self.associado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adepto">
+              <PropertyRef Name="adeptoid" />
+            </Principal>
+            <Dependent Role="associado">
+              <PropertyRef Name="adeptoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_livropresenca_adepto">
+          <End Role="adepto" Type="Self.adepto" Multiplicity="0..1" />
+          <End Role="livropresenca" Type="Self.livropresenca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adepto">
+              <PropertyRef Name="adeptoid" />
+            </Principal>
+            <Dependent Role="livropresenca">
+              <PropertyRef Name="orientadorid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adeptolivropresenca_livropresenca">
+          <End Role="livropresenca" Type="Self.livropresenca" Multiplicity="0..1" />
+          <End Role="adeptolivropresenca" Type="Self.adeptolivropresenca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="livropresenca">
+              <PropertyRef Name="livropresencaid" />
+            </Principal>
+            <Dependent Role="adeptolivropresenca">
+              <PropertyRef Name="livropresencaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adeptomissaosagrada_adeptomissaosagrada">
+          <End Role="adeptomissaosagrada" Type="Self.adeptomissaosagrada" Multiplicity="0..1" />
+          <End Role="adeptomissaosagrada1" Type="Self.adeptomissaosagrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adeptomissaosagrada">
+              <PropertyRef Name="adeptomissaosagradaid" />
+            </Principal>
+            <Dependent Role="adeptomissaosagrada1">
+              <PropertyRef Name="adeptomissaosagradavinculoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adeptomissaosagrada_missaosagrada">
+          <End Role="missaosagrada" Type="Self.missaosagrada" Multiplicity="0..1" />
+          <End Role="adeptomissaosagrada" Type="Self.adeptomissaosagrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="missaosagrada">
+              <PropertyRef Name="missaosagradaid" />
+            </Principal>
+            <Dependent Role="adeptomissaosagrada">
+              <PropertyRef Name="missaosagradaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adeptomodulo_modulo">
+          <End Role="modulo" Type="Self.modulo" Multiplicity="0..1" />
+          <End Role="adeptomodulo" Type="Self.adeptomodulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="modulo">
+              <PropertyRef Name="moduloid" />
+            </Principal>
+            <Dependent Role="adeptomodulo">
+              <PropertyRef Name="moduloid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adeptorevistasagrada_associacao">
+          <End Role="associacao" Type="Self.associacao" Multiplicity="0..1" />
+          <End Role="adeptorevistasagrada" Type="Self.adeptorevistasagrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="associacao">
+              <PropertyRef Name="associacaoid" />
+            </Principal>
+            <Dependent Role="adeptorevistasagrada">
+              <PropertyRef Name="associacaoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adeptorevistasagrada_revistasagrada">
+          <End Role="revistasagrada" Type="Self.revistasagrada" Multiplicity="0..1" />
+          <End Role="adeptorevistasagrada" Type="Self.adeptorevistasagrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="revistasagrada">
+              <PropertyRef Name="revistasagradaid" />
+            </Principal>
+            <Dependent Role="adeptorevistasagrada">
+              <PropertyRef Name="revistasagradaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_associacao_federacao">
+          <End Role="federacao" Type="Self.federacao" Multiplicity="0..1" />
+          <End Role="associacao" Type="Self.associacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="federacao">
+              <PropertyRef Name="federacaoid" />
+            </Principal>
+            <Dependent Role="associacao">
+              <PropertyRef Name="federacaoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_associacao_regional">
+          <End Role="regional" Type="Self.regional" Multiplicity="0..1" />
+          <End Role="associacao" Type="Self.associacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="regional">
+              <PropertyRef Name="regionalid" />
+            </Principal>
+            <Dependent Role="associacao">
+              <PropertyRef Name="regionalid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_associado_associacao">
+          <End Role="associacao" Type="Self.associacao" Multiplicity="0..1" />
+          <End Role="associado" Type="Self.associado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="associacao">
+              <PropertyRef Name="associacaoid" />
+            </Principal>
+            <Dependent Role="associado">
+              <PropertyRef Name="associacaoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_livropresenca_associacao">
+          <End Role="associacao" Type="Self.associacao" Multiplicity="0..1" />
+          <End Role="livropresenca" Type="Self.livropresenca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="associacao">
+              <PropertyRef Name="associacaoid" />
+            </Principal>
+            <Dependent Role="livropresenca">
+              <PropertyRef Name="associacaoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_associado_associadotipo">
+          <End Role="associadotipo" Type="Self.associadotipo" Multiplicity="0..1" />
+          <End Role="associado" Type="Self.associado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="associadotipo">
+              <PropertyRef Name="associadotipoid" />
+            </Principal>
+            <Dependent Role="associado">
+              <PropertyRef Name="associadotipoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_livropresenca_atividade">
+          <End Role="atividade" Type="Self.atividade" Multiplicity="0..1" />
+          <End Role="livropresenca" Type="Self.livropresenca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="atividade">
+              <PropertyRef Name="atividadeid" />
+            </Principal>
+            <Dependent Role="livropresenca">
+              <PropertyRef Name="atividadeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_missaosagrada_missaosagradatipo">
+          <End Role="missaosagradatipo" Type="Self.missaosagradatipo" Multiplicity="0..1" />
+          <End Role="missaosagrada" Type="Self.missaosagrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="missaosagradatipo">
+              <PropertyRef Name="missaosagradatipoid" />
+            </Principal>
+            <Dependent Role="missaosagrada">
+              <PropertyRef Name="missaosagradatipoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SGALEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="adepto" EntityType="Self.adepto" />
+          <EntitySet Name="adeptolivropresenca" EntityType="Self.adeptolivropresenca" />
+          <EntitySet Name="adeptomissaosagrada" EntityType="Self.adeptomissaosagrada" />
+          <EntitySet Name="adeptomodulo" EntityType="Self.adeptomodulo" />
+          <EntitySet Name="adeptorevistasagrada" EntityType="Self.adeptorevistasagrada" />
+          <EntitySet Name="associacao" EntityType="Self.associacao" />
+          <EntitySet Name="associado" EntityType="Self.associado" />
+          <EntitySet Name="associadotipo" EntityType="Self.associadotipo" />
+          <EntitySet Name="atividade" EntityType="Self.atividade" />
+          <EntitySet Name="federacao" EntityType="Self.federacao" />
+          <EntitySet Name="livropresenca" EntityType="Self.livropresenca" />
+          <EntitySet Name="missaosagrada" EntityType="Self.missaosagrada" />
+          <EntitySet Name="missaosagradatipo" EntityType="Self.missaosagradatipo" />
+          <EntitySet Name="modulo" EntityType="Self.modulo" />
+          <EntitySet Name="regional" EntityType="Self.regional" />
+          <EntitySet Name="revistasagrada" EntityType="Self.revistasagrada" />
+          <AssociationSet Name="FK_adeptolivropresenca_adepto" Association="Self.FK_adeptolivropresenca_adepto">
+            <End Role="adepto" EntitySet="adepto" />
+            <End Role="adeptolivropresenca" EntitySet="adeptolivropresenca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adeptomissaosagrada_adepto" Association="Self.FK_adeptomissaosagrada_adepto">
+            <End Role="adepto" EntitySet="adepto" />
+            <End Role="adeptomissaosagrada" EntitySet="adeptomissaosagrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adeptomodulo_adepto" Association="Self.FK_adeptomodulo_adepto">
+            <End Role="adepto" EntitySet="adepto" />
+            <End Role="adeptomodulo" EntitySet="adeptomodulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adeptorevistasagrada_adepto" Association="Self.FK_adeptorevistasagrada_adepto">
+            <End Role="adepto" EntitySet="adepto" />
+            <End Role="adeptorevistasagrada" EntitySet="adeptorevistasagrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_associado_adepto" Association="Self.FK_associado_adepto">
+            <End Role="adepto" EntitySet="adepto" />
+            <End Role="associado" EntitySet="associado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_livropresenca_adepto" Association="Self.FK_livropresenca_adepto">
+            <End Role="adepto" EntitySet="adepto" />
+            <End Role="livropresenca" EntitySet="livropresenca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adeptolivropresenca_livropresenca" Association="Self.FK_adeptolivropresenca_livropresenca">
+            <End Role="livropresenca" EntitySet="livropresenca" />
+            <End Role="adeptolivropresenca" EntitySet="adeptolivropresenca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adeptomissaosagrada_adeptomissaosagrada" Association="Self.FK_adeptomissaosagrada_adeptomissaosagrada">
+            <End Role="adeptomissaosagrada" EntitySet="adeptomissaosagrada" />
+            <End Role="adeptomissaosagrada1" EntitySet="adeptomissaosagrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adeptomissaosagrada_missaosagrada" Association="Self.FK_adeptomissaosagrada_missaosagrada">
+            <End Role="missaosagrada" EntitySet="missaosagrada" />
+            <End Role="adeptomissaosagrada" EntitySet="adeptomissaosagrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adeptomodulo_modulo" Association="Self.FK_adeptomodulo_modulo">
+            <End Role="modulo" EntitySet="modulo" />
+            <End Role="adeptomodulo" EntitySet="adeptomodulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adeptorevistasagrada_associacao" Association="Self.FK_adeptorevistasagrada_associacao">
+            <End Role="associacao" EntitySet="associacao" />
+            <End Role="adeptorevistasagrada" EntitySet="adeptorevistasagrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adeptorevistasagrada_revistasagrada" Association="Self.FK_adeptorevistasagrada_revistasagrada">
+            <End Role="revistasagrada" EntitySet="revistasagrada" />
+            <End Role="adeptorevistasagrada" EntitySet="adeptorevistasagrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_associacao_federacao" Association="Self.FK_associacao_federacao">
+            <End Role="federacao" EntitySet="federacao" />
+            <End Role="associacao" EntitySet="associacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_associacao_regional" Association="Self.FK_associacao_regional">
+            <End Role="regional" EntitySet="regional" />
+            <End Role="associacao" EntitySet="associacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_associado_associacao" Association="Self.FK_associado_associacao">
+            <End Role="associacao" EntitySet="associacao" />
+            <End Role="associado" EntitySet="associado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_livropresenca_associacao" Association="Self.FK_livropresenca_associacao">
+            <End Role="associacao" EntitySet="associacao" />
+            <End Role="livropresenca" EntitySet="livropresenca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_associado_associadotipo" Association="Self.FK_associado_associadotipo">
+            <End Role="associadotipo" EntitySet="associadotipo" />
+            <End Role="associado" EntitySet="associado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_livropresenca_atividade" Association="Self.FK_livropresenca_atividade">
+            <End Role="atividade" EntitySet="atividade" />
+            <End Role="livropresenca" EntitySet="livropresenca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_missaosagrada_missaosagradatipo" Association="Self.FK_missaosagrada_missaosagradatipo">
+            <End Role="missaosagradatipo" EntitySet="missaosagradatipo" />
+            <End Role="missaosagrada" EntitySet="missaosagrada" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SGALModelStoreContainer" CdmEntityContainer="SGALEntities">
+          <EntitySetMapping Name="adepto">
+            <EntityTypeMapping TypeName="SGALModel.adepto">
+              <MappingFragment StoreEntitySet="adepto">
+                <ScalarProperty Name="adeptoid" ColumnName="adeptoid" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="datanascimento" ColumnName="datanascimento" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefoneresidencial" ColumnName="telefoneresidencial" />
+                <ScalarProperty Name="telefonecomercial" ColumnName="telefonecomercial" />
+                <ScalarProperty Name="telefonecelular" ColumnName="telefonecelular" />
+                <ScalarProperty Name="datainclusao" ColumnName="datainclusao" />
+                <ScalarProperty Name="dataalteracao" ColumnName="dataalteracao" />
+                <ScalarProperty Name="dataprimeiravez" ColumnName="dataprimeiravez" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="adeptolivropresenca">
+            <EntityTypeMapping TypeName="SGALModel.adeptolivropresenca">
+              <MappingFragment StoreEntitySet="adeptolivropresenca">
+                <ScalarProperty Name="adeptolivropresencaid" ColumnName="adeptolivropresencaid" />
+                <ScalarProperty Name="livropresencaid" ColumnName="livropresencaid" />
+                <ScalarProperty Name="adeptoid" ColumnName="adeptoid" />
+                <ScalarProperty Name="primeiravez" ColumnName="primeiravez" />
+                <ScalarProperty Name="observacao" ColumnName="observacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="adeptomissaosagrada">
+            <EntityTypeMapping TypeName="SGALModel.adeptomissaosagrada">
+              <MappingFragment StoreEntitySet="adeptomissaosagrada">
+                <ScalarProperty Name="adeptomissaosagradaid" ColumnName="adeptomissaosagradaid" />
+                <ScalarProperty Name="adeptoid" ColumnName="adeptoid" />
+                <ScalarProperty Name="missaosagradaid" ColumnName="missaosagradaid" />
+                <ScalarProperty Name="situacao" ColumnName="situacao" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="valortotal" ColumnName="valortotal" />
+                <ScalarProperty Name="datainicio" ColumnName="datainicio" />
+                <ScalarProperty Name="dataalteracao" ColumnName="dataalteracao" />
+                <ScalarProperty Name="datatermino" ColumnName="datatermino" />
+                <ScalarProperty Name="adeptomissaosagradavinculoid" ColumnName="adeptomissaosagradavinculoid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="adeptomodulo">
+            <EntityTypeMapping TypeName="SGALModel.adeptomodulo">
+              <MappingFragment StoreEntitySet="adeptomodulo">
+                <ScalarProperty Name="adeptomoduloid" ColumnName="adeptomoduloid" />
+                <ScalarProperty Name="adeptoid" ColumnName="adeptoid" />
+                <ScalarProperty Name="moduloid" ColumnName="moduloid" />
+                <ScalarProperty Name="datainicio" ColumnName="datainicio" />
+                <ScalarProperty Name="datatermino" ColumnName="datatermino" />
+                <ScalarProperty Name="aprovado" ColumnName="aprovado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="adeptorevistasagrada">
+            <EntityTypeMapping TypeName="SGALModel.adeptorevistasagrada">
+              <MappingFragment StoreEntitySet="adeptorevistasagrada">
+                <ScalarProperty Name="adeptorevistasagradaid" ColumnName="adeptorevistasagradaid" />
+                <ScalarProperty Name="adeptoid" ColumnName="adeptoid" />
+                <ScalarProperty Name="associacaoid" ColumnName="associacaoid" />
+                <ScalarProperty Name="revistasagradaid" ColumnName="revistasagradaid" />
+                <ScalarProperty Name="quantidade" ColumnName="quantidade" />
+                <ScalarProperty Name="valorcota" ColumnName="valorcota" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="associacao">
+            <EntityTypeMapping TypeName="SGALModel.associacao">
+              <MappingFragment StoreEntitySet="associacao">
+                <ScalarProperty Name="associacaoid" ColumnName="associacaoid" />
+                <ScalarProperty Name="regionalid" ColumnName="regionalid" />
+                <ScalarProperty Name="federacaoid" ColumnName="federacaoid" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="datainclusao" ColumnName="datainclusao" />
+                <ScalarProperty Name="dataalteracao" ColumnName="dataalteracao" />
+                <ScalarProperty Name="dataabertura" ColumnName="dataabertura" />
+                <ScalarProperty Name="datafechamento" ColumnName="datafechamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="associado">
+            <EntityTypeMapping TypeName="SGALModel.associado">
+              <MappingFragment StoreEntitySet="associado">
+                <ScalarProperty Name="associadoid" ColumnName="associadoid" />
+                <ScalarProperty Name="associadotipoid" ColumnName="associadotipoid" />
+                <ScalarProperty Name="adeptoid" ColumnName="adeptoid" />
+                <ScalarProperty Name="associacaoid" ColumnName="associacaoid" />
+                <ScalarProperty Name="dataassociacao" ColumnName="dataassociacao" />
+                <ScalarProperty Name="dataalteracao" ColumnName="dataalteracao" />
+                <ScalarProperty Name="observacao" ColumnName="observacao" />
+                <ScalarProperty Name="situacao" ColumnName="situacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="associadotipo">
+            <EntityTypeMapping TypeName="SGALModel.associadotipo">
+              <MappingFragment StoreEntitySet="associadotipo">
+                <ScalarProperty Name="associadotipoid" ColumnName="associadotipoid" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="situacao" ColumnName="situacao" />
+                <ScalarProperty Name="datainclusao" ColumnName="datainclusao" />
+                <ScalarProperty Name="dataalteracao" ColumnName="dataalteracao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="atividade">
+            <EntityTypeMapping TypeName="SGALModel.atividade">
+              <MappingFragment StoreEntitySet="atividade">
+                <ScalarProperty Name="atividadeid" ColumnName="atividadeid" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="situacao" ColumnName="situacao" />
+                <ScalarProperty Name="datainclusao" ColumnName="datainclusao" />
+                <ScalarProperty Name="dataalteracao" ColumnName="dataalteracao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="federacao">
+            <EntityTypeMapping TypeName="SGALModel.federacao">
+              <MappingFragment StoreEntitySet="federacao">
+                <ScalarProperty Name="federacaoid" ColumnName="federacaoid" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="datainclusao" ColumnName="datainclusao" />
+                <ScalarProperty Name="dataalteracao" ColumnName="dataalteracao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="livropresenca">
+            <EntityTypeMapping TypeName="SGALModel.livropresenca">
+              <MappingFragment StoreEntitySet="livropresenca">
+                <ScalarProperty Name="livropresencaid" ColumnName="livropresencaid" />
+                <ScalarProperty Name="associacaoid" ColumnName="associacaoid" />
+                <ScalarProperty Name="atividadeid" ColumnName="atividadeid" />
+                <ScalarProperty Name="orientadorid" ColumnName="orientadorid" />
+                <ScalarProperty Name="datahorareuniao" ColumnName="datahorareuniao" />
+                <ScalarProperty Name="temareuniao" ColumnName="temareuniao" />
+                <ScalarProperty Name="observacoes" ColumnName="observacoes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="missaosagrada">
+            <EntityTypeMapping TypeName="SGALModel.missaosagrada">
+              <MappingFragment StoreEntitySet="missaosagrada">
+                <ScalarProperty Name="missaosagradaid" ColumnName="missaosagradaid" />
+                <ScalarProperty Name="missaosagradatipoid" ColumnName="missaosagradatipoid" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="datainclusao" ColumnName="datainclusao" />
+                <ScalarProperty Name="dataalteracao" ColumnName="dataalteracao" />
+                <ScalarProperty Name="situacao" ColumnName="situacao" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="missaosagradatipo">
+            <EntityTypeMapping TypeName="SGALModel.missaosagradatipo">
+              <MappingFragment StoreEntitySet="missaosagradatipo">
+                <ScalarProperty Name="missaosagradatipoid" ColumnName="missaosagradatipoid" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="situacao" ColumnName="situacao" />
+                <ScalarProperty Name="datainclusao" ColumnName="datainclusao" />
+                <ScalarProperty Name="dataalteracao" ColumnName="dataalteracao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="modulo">
+            <EntityTypeMapping TypeName="SGALModel.modulo">
+              <MappingFragment StoreEntitySet="modulo">
+                <ScalarProperty Name="moduloid" ColumnName="moduloid" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="datainclusao" ColumnName="datainclusao" />
+                <ScalarProperty Name="dataalteracao" ColumnName="dataalteracao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="regional">
+            <EntityTypeMapping TypeName="SGALModel.regional">
+              <MappingFragment StoreEntitySet="regional">
+                <ScalarProperty Name="regionalid" ColumnName="regionalid" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="dataabertura" ColumnName="dataabertura" />
+                <ScalarProperty Name="datafechamento" ColumnName="datafechamento" />
+                <ScalarProperty Name="datainclusao" ColumnName="datainclusao" />
+                <ScalarProperty Name="dataalteracao" ColumnName="dataalteracao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="revistasagrada">
+            <EntityTypeMapping TypeName="SGALModel.revistasagrada">
+              <MappingFragment StoreEntitySet="revistasagrada">
+                <ScalarProperty Name="revistasagradaid" ColumnName="revistasagradaid" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="datainclusao" ColumnName="datainclusao" />
+                <ScalarProperty Name="dataalteracao" ColumnName="dataalteracao" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="valorcotistas" ColumnName="valorcotistas" />
+                <ScalarProperty Name="situacao" ColumnName="situacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

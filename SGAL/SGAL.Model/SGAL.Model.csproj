@@ -11,6 +11,8 @@
     <AssemblyName>SGAL.Model</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,14 +52,106 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Logic\SGAL\adepto.cs">
+      <DependentUpon>SGAL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\SGAL\adeptolivropresenca.cs">
+      <DependentUpon>SGAL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\SGAL\adeptomissaosagrada.cs">
+      <DependentUpon>SGAL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\SGAL\adeptomodulo.cs">
+      <DependentUpon>SGAL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\SGAL\adeptorevistasagrada.cs">
+      <DependentUpon>SGAL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\SGAL\associacao.cs">
+      <DependentUpon>SGAL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\SGAL\associado.cs">
+      <DependentUpon>SGAL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\SGAL\associadotipo.cs">
+      <DependentUpon>SGAL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\SGAL\atividade.cs">
+      <DependentUpon>SGAL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\SGAL\federacao.cs">
+      <DependentUpon>SGAL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\SGAL\livropresenca.cs">
+      <DependentUpon>SGAL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\SGAL\missaosagrada.cs">
+      <DependentUpon>SGAL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\SGAL\missaosagradatipo.cs">
+      <DependentUpon>SGAL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\SGAL\modulo.cs">
+      <DependentUpon>SGAL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\SGAL\regional.cs">
+      <DependentUpon>SGAL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\SGAL\revistasagrada.cs">
+      <DependentUpon>SGAL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\SGAL\SGAL.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SGAL.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\SGAL\SGAL.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SGAL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\SGAL\SGAL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SGAL.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Logic\SGAL\SGAL.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="Logic\SGAL\SGAL.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SGAL.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Logic\SGAL\SGAL.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SGAL.edmx</DependentUpon>
+      <LastGenOutput>SGAL.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Logic\SGAL\SGAL.edmx.diagram">
+      <DependentUpon>SGAL.edmx</DependentUpon>
+    </None>
+    <None Include="Logic\SGAL\SGAL.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SGAL.edmx</DependentUpon>
+      <LastGenOutput>SGAL.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
