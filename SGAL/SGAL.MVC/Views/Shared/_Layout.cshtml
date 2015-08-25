@@ -11,30 +11,36 @@
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
                 @Html.ActionLink("SGAL", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            @*<div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-            </div>*@
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year</p>
-        </footer>
+    <div class="container body-content" style="margin-top: 25px; min-height: 500px;">
+        <div class="col-md-2" style="text-align: center; float: left;">
+            <h5 class="text-muted">Favoritos</h5>
+            <ul class="nav nav-pills nav-stacked">
+                <li>@Html.ActionLink("Adicionar Adepto", "Criar", "Adepto")</li>
+                <li>@Html.ActionLink("Adicionar Cota de Revistas", "Criar", "Adepto")</li>
+            </ul>
+            <br/>
+            <h5 class="text-muted">Cadastros</h5>
+            <ul class="nav nav-pills nav-stacked">
+                <li>@Html.ActionLink("Federação", "Index", "Federacao")</li>
+                <li>@Html.ActionLink("Regional", "Index", "Associacao")</li>
+                <li>@Html.ActionLink("Associação Local", "Index", "Associacao")</li>
+                <li>@Html.ActionLink("Associado", "Index", "Associacao")</li>
+                <li>@Html.ActionLink("Revista Sagrada", "Index", "Associacao")</li>
+                <li>@Html.ActionLink("Missão Sagrada", "Index", "Associacao")</li>
+            </ul>
+        </div>
+        <div class="col-md-10">
+            @RenderBody()
+        </div>
     </div>
-
+    <hr />
+    <footer style="text-align: center">
+        <p>&copy; @DateTime.Now.Year</p>
+    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

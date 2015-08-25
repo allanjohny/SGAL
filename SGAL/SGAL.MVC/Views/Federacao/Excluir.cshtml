@@ -1,0 +1,49 @@
+﻿@model SGAL.Model.Logic.SGAL.federacao
+
+@{
+    ViewBag.Title = "Federaração - Excluir";
+}
+
+<div class="page-header">
+    <h2> Federação <span class="text-muted" style="font-size: 60%">Excluir</span></h2>
+</div>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.datainclusao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datainclusao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dataalteracao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dataalteracao)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <hr />
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Excluir" class="btn btn-danger" />
+            @Html.ActionLink("Voltar", "Index", "Federacao", new { @class = "btn btn-primary" })
+        </div>
+
+    }
+</div>
