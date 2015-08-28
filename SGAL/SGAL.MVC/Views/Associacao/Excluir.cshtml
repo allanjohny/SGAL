@@ -19,6 +19,22 @@
         </dd>
 
         <dt>
+            Regional
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.regional.descricao)
+        </dd>
+
+        <dt>
+            Federação
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.federacao.descricao)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.dataabertura)
         </dt>
 
@@ -60,6 +76,5 @@
             <input type="submit" value="Excluir" class="btn btn-danger" />
             @Html.ActionLink("Voltar", "Index", "Associacao", new { @class = "btn btn-primary" })
         </div>
-
     }
 </div>

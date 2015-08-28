@@ -22,3 +22,11 @@ select,
 textarea {
     max-width: 280px;
 }
+
+table.table thead tr th {
+    background: rgba(90,209,144,0.4);
+}
+
+dt, dd {
+    line-height: 1.75;
+}

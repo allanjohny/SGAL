@@ -4,56 +4,35 @@
 }
 
 <div class="page-header">
-    <h2> Regional <span class="text-muted" style="font-size: 60%">Tela Inicial</span></h2>
+    <h2> Regional <small>Tela Inicial</small></h2>
 </div>
 
 <div class="row">
     <div class="col-md-12">
-        @Html.ActionLink("Cadastrar", "Criar", "", htmlAttributes: new { @class = "btn btn-primary" })
+        <a class="btn btn-primary" href="@Url.Action("Criar", "Regional")"><i class="glyphicon glyphicon-check"></i> Cadastrar</a>
     </div>
 </div>
 
 <div class="row" style="margin-top: 20px">
-    <table class="table table-bordered table-responsive table-condensed table-striped table-hover">
+    <table id="TabelaTeste" data-toggle="table" data-url="@Url.Action("Listagem", "Regional")"
+           data-search="true" data-search-time-out="200" data-show-columns="true"
+           data-show-refresh="true" data-show-toggle="true"
+           data-show-pagination-switch="true">
         <thead>
             <tr>
-                <th>#</th>
-                <th>
+                <th data-field="descricao" data-sortable="true">
                     @Html.DisplayNameFor(model => model.descricao)
                 </th>
-                <th>
+                <th data-field="datainclusao" data-sortable="true">
                     @Html.DisplayNameFor(model => model.datainclusao)
                 </th>
-                <th>
+                <th data-field="dataalteracao" data-sortable="true">
                     @Html.DisplayNameFor(model => model.dataalteracao)
                 </th>
-                <th>Ações principais</th>
+                <th data-field="botoes" data-searchable="false" data-tableexport-display="none">
+                    Ações principais
+                </th>
             </tr>
         </thead>
-        <tbody>
-        @{
-            int cont = 1;
-            foreach (var item in Model)
-            {
-                <tr>
-                    <td>@(cont++)</td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.descricao)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.datainclusao)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.dataalteracao)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Editar", "Editar", new { id = item.regionalid }, new { @class = "btn btn-sm btn-primary" }) &nbsp;
-                        @Html.ActionLink("Ver", "Detalhar", new { id = item.regionalid }, new { @class = "btn btn-sm btn-info" }) &nbsp;
-                        @Html.ActionLink("Excluir", "Excluir", new { id = item.regionalid }, new { @class = "btn btn-sm btn-danger" })
-                    </td>
-                </tr>
-            }
-        }
-        </tbody>
     </table>
 </div>

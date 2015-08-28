@@ -1,18 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
+using System.Net.Http.Headers;
+using System.Runtime.InteropServices.ComTypes;
+using System.Security.AccessControl;
 using System.Web.Mvc;
 using SGAL.Model.Logic.SGAL;
 using SGAL.MVC.Util;
 using SGAL.Servicos.Logic;
+using SGAL.Util;
 
 namespace SGAL.MVC.Controllers
 {
-    public class AssociacaoController : Controller
+    public class AssociacaoController : BaseController
     {
         public ActionResult Index()
         {
-
-            return View(new BaseService<associacao>().ObterTodos());
+           return View(new BaseService<associacao>().ObterTodos());
         }
 
         public ActionResult Criar()
@@ -45,7 +50,7 @@ namespace SGAL.MVC.Controllers
                 servico.Salvar();
                 return RedirectToAction("Index");
             }
-
+            CriarViewBags();
             return View(associacao);
         }
 
@@ -78,6 +83,7 @@ namespace SGAL.MVC.Controllers
                 servico.Salvar();
                 return RedirectToAction("Index");
             }
+            CriarViewBags();
             return View(associacao);
         }
 
@@ -108,6 +114,18 @@ namespace SGAL.MVC.Controllers
         {
             ViewBag.federacoes = new BaseService<federacao>().ObterTodos().ToSelectList(ent => ent.federacaoid, ent => ent.descricao, "Selecione..");
             ViewBag.regionais = new BaseService<regional>().ObterVarios(ent => ent.datafechamento == null).ToSelectList(ent => ent.regionalid, ent => ent.descricao, "Selecione..");
+        }
+
+        public JsonResult Listagem()
+        {
+            var listagem = new BaseService<associacao>().ObterTodos();
+            return Json(listagem.ToList().Select(ent => new
+            {
+                ent.descricao,
+                datainclusao = ent.datainclusao.Value.DateTimeToStr(),
+                dataalteracao = ent.dataalteracao.Value.DateTimeToStr(),
+                botoes = GerarBotoes(ent.associacaoid, this.ControllerContext.RouteData.Values["controller"].ToString())
+            }), JsonRequestBehavior.AllowGet);
         }
     }
 }

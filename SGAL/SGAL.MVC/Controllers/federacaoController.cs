@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using SGAL.Model.Logic.SGAL;
 using SGAL.Servicos.Logic;
+using SGAL.Util;
 
 namespace SGAL.MVC.Controllers
 {
-    public class FederacaoController : Controller
+    public class FederacaoController : BaseController
     {
         public ActionResult Index()
         {
@@ -99,6 +101,18 @@ namespace SGAL.MVC.Controllers
             servico.Excluir(ent => ent.federacaoid == id);
             servico.Salvar();
             return RedirectToAction("Index");
+        }
+
+        public JsonResult Listagem()
+        {
+            var listagem = new BaseService<federacao>().ObterTodos();
+            return Json(listagem.ToList().Select(ent => new
+            {
+                ent.descricao,
+                datainclusao = ent.datainclusao.Value.DateTimeToStr(),
+                dataalteracao = ent.dataalteracao.Value.DateTimeToStr(),
+                botoes = GerarBotoes(ent.federacaoid, this.ControllerContext.RouteData.Values["controller"].ToString())
+            }), JsonRequestBehavior.AllowGet);
         }
     }
 }

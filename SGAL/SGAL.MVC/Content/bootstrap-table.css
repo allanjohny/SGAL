@@ -17,7 +17,7 @@
 .bootstrap-table .table > thead > tr > td,
 .bootstrap-table .table > tbody > tr > td,
 .bootstrap-table .table > tfoot > tr > td {
-    padding: 8px !important;
+    padding: 5px !important;
 }
 
 .bootstrap-table .table.table-no-bordered > thead > tr > th,

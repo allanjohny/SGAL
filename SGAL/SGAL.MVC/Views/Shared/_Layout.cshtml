@@ -6,34 +6,87 @@
     <title>Sistema de Gerenciamento de Associação Local</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/bootstrap-datepicker")
+    @Styles.Render("~/Content/select2")
+    @Styles.Render("~/Content/animate")
+    @Styles.Render("~/Content/bootstrap-table")
     @Scripts.Render("~/bundles/modernizr")
+    <script>
+        //Variaveis globais
+        var content = '@Url.Content("~/")';
+    </script>
 </head>
 <body>
-    <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                @Html.ActionLink("SGAL", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index","Home")">SGAL</a>
             </div>
-        </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Federação", "Index", "Federacao")</li>
+                    <li>@Html.ActionLink("Regional", "Index", "Regional")</li>
+                    <li>@Html.ActionLink("Associação Local", "Index", "Associacao")</li>
+                    <li>@Html.ActionLink("Adepto", "Index", "Adepto")</li>
+                    @*<li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>*@
+                </ul>
+                @*<form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Link</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>*@
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div class="container" id="divMensagem">
     </div>
-    <div class="container body-content" style="margin-top: 25px; min-height: 500px;">
-        <div class="col-md-2" style="text-align: center; float: left;">
-            @*<h5 class="text-muted">Favoritos</h5>
+    <div class="container body-content">
+        @*<h5 class="text-muted">Favoritos</h5>
             <ul class="nav nav-pills nav-stacked">
                 <li>@Html.ActionLink("Adicionar Adepto", "Criar", "Adepto")</li>
                 <li>@Html.ActionLink("Adicionar Cota de Revistas", "Criar", "Adepto")</li>
             </ul>
-            <br />*@
+            <br />
             <h5 class="text-muted">Cadastros</h5>
             <ul class="nav nav-pills nav-stacked">
                 <li>@Html.ActionLink("Federação", "Index", "Federacao")</li>
                 <li>@Html.ActionLink("Regional", "Index", "Regional")</li>
                 <li>@Html.ActionLink("Associação Local", "Index", "Associacao")</li>
-            </ul>
-        </div>
-        <div class="col-md-10">
-            @RenderBody()
-        </div>
+            </ul>*@
+        @RenderBody()
     </div>
     <hr />
     <footer style="text-align: center">
@@ -42,11 +95,23 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/bootstrap-datepicker")
+    @Scripts.Render("~/bundles/select2")
+    @Scripts.Render("~/bundles/noty")
+    @Scripts.Render("~/bundles/util")
+    @Scripts.Render("~/bundles/bootstrap-table")
+    @Scripts.Render("~/bundles/jquery-mask")
+    
     @RenderSection("scripts", required: false)
     <script>
         $(document).ready(function () {
+            $(".form-group input[type=text], .form-group select, .form-group textarea, #CaptchaInputText").each(function () {
+                if (!$(this).hasClass("form-control")) {
+                    $(this).addClass("form-control");
+                }
+            });
+
             //Coloca a máscara e coloca o datepicker nos campos com a classe DatePicker
-            $(".DatePicker").datepicker({
+            $(".DatePicker").mask('00/00/0000', { placeholder: "__/__/____" }).datepicker({
                 format: "dd/mm/yyyy",
                 clearBtn: true,
                 language: "pt-BR",
@@ -54,7 +119,46 @@
                 autoclose: true,
                 todayHighlight: true
             });
+
+            //Transforma todos os select's em select2
+            $("select").select2({ language: "pt-BR" });
         });
+
+        $.noty.defaults = {
+            layout: 'topCenter',
+            theme: 'relax',
+            type: 'default',
+            text: '', // can be html or string
+            dismissQueue: true, // If you want to use queue feature set this true
+            template: '<div class="noty_message"><span class="noty_text"></span><div class="noty_close"></div></div>',
+            animation: {
+                open: 'animated fadeInDownBig', // or Animate.css class names like: 'animated bounceInLeft'
+                close: 'animated fadeOutUpBig', // or Animate.css class names like: 'animated bounceOutLeft'
+                speed: 500 // opening & closing animation speed
+            },
+            timeout: 5000, // delay for closing event. Set false for sticky notifications
+            force: true, // adds notification to the beginning of queue when set to true
+            modal: false,
+            maxVisible: 5, // you can set max visible notification for dismissQueue true option,
+            killer: true, // for close all notifications before show
+            closeWith: ['click'], // ['click', 'button', 'hover', 'backdrop'] // backdrop click will close all notifications
+            callback: {
+                onShow: function () { },
+                afterShow: function () { },
+                onClose: function () { },
+                afterClose: function () { },
+                onCloseClick: function () { },
+            },
+            buttons: false // an array of buttons
+        };
     </script>
+    @if (ViewData["Mensagem"] != null)
+    {
+        <script>
+            $(document).ready(function () {
+                mensagem('@ViewData["Mensagem"]');
+            });
+        </script>
+    }
 </body>
 </html>

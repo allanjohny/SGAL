@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SGAL.Model.Logic.SGAL.adepto>
+@{
+    ViewBag.Title = "Adepto";
+}
+
+<div class="page-header">
+    <h2> Adepto <small>Tela Inicial</small></h2>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <a class="btn btn-primary" href="@Url.Action("Criar", "Adepto")"><i class="glyphicon glyphicon-check"></i> Cadastrar</a>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 20px">
+    <table id="TabelaTeste" data-toggle="table" data-url="@Url.Action("Listagem", "Adepto")"
+data-search="true" data-search-time-out="200" data-show-columns="true"
+           data-show-refresh="true" data-show-toggle="true"
+           data-show-pagination-switch="true">
+        <thead>
+            <tr>
+                <th data-field="nome" data-sortable="true">
+                    @Html.DisplayNameFor(model => model.nome)
+                </th>
+                <th data-field="datanascimento">
+                    @Html.DisplayNameFor(model => model.datanascimento)
+                </th>
+                <th data-field="email">
+                    @Html.DisplayNameFor(model => model.email)
+                </th>
+                <th data-field="telefonecelular">
+                    @Html.DisplayNameFor(model => model.telefonecelular)
+                </th>
+                <th data-field="botoes" data-searchable="false" data-tableexport-display="none">
+                    Ações principais
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<style>
+
+</style>

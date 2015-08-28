@@ -1,0 +1,91 @@
+﻿@using SGAL.Util
+@model SGAL.Model.Logic.SGAL.adepto
+@{
+    ViewBag.Title = "Adepto - Detalhar";
+}
+
+<div class="page-header">
+    <h2> Adepto <small>Detalhar</small></h2>
+</div>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.datanascimento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datanascimento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefoneresidencial)
+        </dt>
+
+        <dd>
+            @Model.telefoneresidencial.FormataTelefone()
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefonecomercial)
+        </dt>
+
+        <dd>
+            @Model.telefonecomercial.FormataTelefone()
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefonecelular)
+        </dt>
+
+        <dd>
+            @Model.telefonecelular.FormataTelefone()
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.datainclusao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datainclusao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dataalteracao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dataalteracao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dataprimeiravez)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dataprimeiravez)
+        </dd>
+
+    </dl>
+</div>
+<hr />
+<div class="col-md-offset-2 col-md-10">
+    @Html.ActionLink("Editar", "Editar", new { id = Model.adeptoid }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Voltar", "Index", "Adepto", new { @class = "btn btn-primary" })
+</div>
