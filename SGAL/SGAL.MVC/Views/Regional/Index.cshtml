@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SGAL.Model.Logic.SGAL.regional>
+@{
+    ViewBag.Title = "Regional";
+}
+
+<div class="page-header">
+    <h2> Regional <span class="text-muted" style="font-size: 60%">Tela Inicial</span></h2>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        @Html.ActionLink("Cadastrar", "Criar", "", htmlAttributes: new { @class = "btn btn-primary" })
+    </div>
+</div>
+
+<div class="row" style="margin-top: 20px">
+    <table class="table table-bordered table-responsive table-condensed table-striped table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.descricao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.datainclusao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.dataalteracao)
+                </th>
+                <th>Ações principais</th>
+            </tr>
+        </thead>
+        <tbody>
+        @{
+            int cont = 1;
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@(cont++)</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descricao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.datainclusao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dataalteracao)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Editar", new { id = item.regionalid }, new { @class = "btn btn-sm btn-primary" }) &nbsp;
+                        @Html.ActionLink("Ver", "Detalhar", new { id = item.regionalid }, new { @class = "btn btn-sm btn-info" }) &nbsp;
+                        @Html.ActionLink("Excluir", "Excluir", new { id = item.regionalid }, new { @class = "btn btn-sm btn-danger" })
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+</div>

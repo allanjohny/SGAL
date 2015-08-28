@@ -26,6 +26,14 @@ namespace SGAL.MVC
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap-datepicker").Include(
+                      "~/Scripts/bootstrap-datepicker.js",
+                      "~/Scripts/locales/bootstrap-datepicker.pt-BR.min.js"));
+
+            bundles.Add(new StyleBundle("~/Content/bootstrap-datepicker").Include(
+                      "~/Content/bootstrap-datepicker3.css"));
+
         }
     }
 }
