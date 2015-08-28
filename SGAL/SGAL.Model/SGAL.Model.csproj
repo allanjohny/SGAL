@@ -85,6 +85,8 @@
     <Compile Include="Logic\SGAL\livropresenca.cs">
       <DependentUpon>SGAL.tt</DependentUpon>
     </Compile>
+    <Compile Include="Logic\SGAL\MetaData\associacao.cs" />
+    <Compile Include="Logic\SGAL\MetaData\regional.cs" />
     <Compile Include="Logic\SGAL\MetaData\federacao.cs" />
     <Compile Include="Logic\SGAL\missaosagrada.cs">
       <DependentUpon>SGAL.tt</DependentUpon>
