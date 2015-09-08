@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using Microsoft.ReportingServices.RdlExpressions.ExpressionHostObjectModel;
 
 namespace SGAL.Util
 {
@@ -435,6 +436,10 @@ namespace SGAL.Util
 
         public static String FormataTelefone(this String valor)
         {
+            //Nulo ou vazio, retorna a propria variavel
+            if (String.IsNullOrEmpty(valor))
+                return valor;
+
             switch (valor.Length)
             {
                 case 10:

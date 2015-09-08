@@ -66,7 +66,7 @@ namespace SGAL.MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar([Bind(Include = "federacaoid,descricao")] federacao federacao)
+        public ActionResult Editar([Bind(Include = "federacaoid,datainclusao,descricao")] federacao federacao)
         {
             if (ModelState.IsValid)
             {

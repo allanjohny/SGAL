@@ -4,23 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ba4f8a165e5046078e76798503940c05" Name="Diagram1">
-        <EntityTypeShape EntityType="SGALModel.adepto" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGALModel.adeptolivropresenca" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGALModel.adeptomissaosagrada" Width="1.5" PointX="6" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGALModel.adeptomodulo" Width="1.5" PointX="6" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGALModel.adeptorevistasagrada" Width="1.5" PointX="3" PointY="16.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGALModel.associacao" Width="1.5" PointX="3.75" PointY="21.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGALModel.associado" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGALModel.associadotipo" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGALModel.atividade" Width="1.5" PointX="3.75" PointY="26.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGALModel.federacao" Width="1.5" PointX="1.5" PointY="23.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGALModel.livropresenca" Width="1.5" PointX="6" PointY="16.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGALModel.missaosagrada" Width="1.5" PointX="3.75" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGALModel.missaosagradatipo" Width="1.5" PointX="1.5" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGALModel.modulo" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGALModel.regional" Width="1.5" PointX="1.5" PointY="20.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGALModel.revistasagrada" Width="1.5" PointX="0.75" PointY="27.5" IsExpanded="true" />
+      <Diagram DiagramId="ba4f8a165e5046078e76798503940c05" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="SGALModel.adepto" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGALModel.adeptolivropresenca" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGALModel.adeptomissaosagrada" Width="1.5" PointX="6" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGALModel.adeptomodulo" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGALModel.adeptorevistasagrada" Width="1.5" PointX="6" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGALModel.associacao" Width="1.5" PointX="3.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGALModel.associado" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGALModel.associadotipo" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGALModel.atividade" Width="1.5" PointX="3.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGALModel.federacao" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGALModel.livropresenca" Width="1.5" PointX="6" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGALModel.missaosagrada" Width="1.5" PointX="3.75" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGALModel.missaosagradatipo" Width="1.5" PointX="1.5" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGALModel.modulo" Width="1.5" PointX="0.75" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGALModel.regional" Width="1.5" PointX="1.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGALModel.revistasagrada" Width="1.5" PointX="3.75" PointY="27.75" IsExpanded="true" />
         <AssociationConnector Association="SGALModel.FK_adeptolivropresenca_adepto" ManuallyRouted="false" />
         <AssociationConnector Association="SGALModel.FK_adeptomissaosagrada_adepto" ManuallyRouted="false" />
         <AssociationConnector Association="SGALModel.FK_adeptomodulo_adepto" ManuallyRouted="false" />
